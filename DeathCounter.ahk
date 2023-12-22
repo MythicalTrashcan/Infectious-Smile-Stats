@@ -1,10 +1,13 @@
-counterfile := "Counts/DeathCount.txt"
+counterFile := "Counts/DeathCount.txt"
 counter := 0
 
 if FileExist(counterFile)
     FileRead, counter, %counterFile%
 else
-    FileAppend, %counter%, %counterFile%
+	FileCreateDir Counts
+	File := FileOpen(counterFile, "w")
+	File.Write(counter)
+	File.Close()
 
 Gui, Color, Black
 Gui +LastFound  ; 
